@@ -1,0 +1,26 @@
+package com.inovationtech.example_kafka.config;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class KafkaTopicConfig {
+  
+  @Value(value = "${spring.kafka.bootstrap-servers}")
+  private String bootstrapServers;
+
+  @Bean
+  public KafkaAdmin kafkaAdmin() {
+    Map<String, Object> configs = new HashMap<>();
+    configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+    return new KafkaAdmin(configs);    
+  }
+
+  @Bean
+  public NewTopic topicOrderProcessed(){
+    return new NewTopic("napoleon-topic-order-processed", 2, (short) 1);
+  }
+}
