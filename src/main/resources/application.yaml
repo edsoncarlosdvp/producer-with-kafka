@@ -1,6 +1,6 @@
 spring:
   application:
-    name: example-kafka
+    name: producer-kafka
   kafka:
     bootstrap-servers: localhost:9092
 
