@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.inovationtech.example_kafka.record.OrderRecord;
 
@@ -17,7 +18,7 @@ public class OrderService {
     this.orderKafkaTemplate = orderKafkaTemplate;
   }
 
-  @SuppressWarnings("null")
+  @PostMapping
   public void sendMessageOrder(OrderRecord orderRecord) {
     int partition = random.nextInt(2);
     System.out.println("Envie uma mensagem para a partição: " + partition);
